@@ -1,24 +1,27 @@
-const sgMail = require('@sendgrid/mail')
+const sgMail = require('@sendgrid/mail');
+
 require("dotenv").config({ 
     path: require("find-config")(".env") 
   });
 
-  console.log(process.env.SENDGRID_API_KEY)
+const sendEmail = async (msgObject) => {
+  console.log('===> Inside sendEMail Fct!!!! ')
 
-sgMail.setApiKey(process.env.SENDGRID_API_KEY)
-const msg = {
-  from: 'nathanperfetti@gmail.com', // Change to your recipient
-  to: 'nperfetti@instructors.2u.com', // Change to your verified sender
-  subject: 'Sending with SendGrid is Fun',
-  text: 'and easy to do anywhere, even with Node.js',
-  html: '<strong>and easy to do anywhere, even with Node.js</strong>',
-}
-sgMail
-  .send(msg)
-  .then(() => {
-    console.log('Email sent')
-  })
-  .catch((error) => {
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+
+  try {
+
+  const msgSentData = await sgMail.send(msgObject);
+
+  return msgSentData;
+
+  } catch(error) {
     console.error(error);
-    console.error(error.response.body)
-  })
+    console.error(error.response.body);
+
+    return error;
+  }
+
+}// end sendEmail fct def
+
+module.exports = sendEmail;

@@ -16,6 +16,13 @@ User.init(
       primaryKey: true,
       autoIncrement: true,
     },
+
+    isVerified: {
+      type: DataTypes.TINYINT,
+      allowNull: false,
+      defaultValue: false
+    },
+
     name: {
       type: DataTypes.STRING,
       allowNull: false,
