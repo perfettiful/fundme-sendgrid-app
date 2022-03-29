@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { Project, User } = require('../models');
 const withAuth = require('../utils/auth');
-const sendEmail = require('../utils/testSendGrid');
+const sendEmail = require('../utils/welcomeEmailSendGrid');
 
 router.get('/', async (req, res) => {
   try {

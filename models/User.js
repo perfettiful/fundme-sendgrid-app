@@ -41,6 +41,15 @@ User.init(
       validate: {
         len: [8],
       },
+      is_Verified:{
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        default: false
+      },
+      passwordResetToken: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      }
     },
   },
   {
